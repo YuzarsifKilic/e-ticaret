@@ -8,6 +8,7 @@ import com.yuzarsif.eticaret.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,5 +31,15 @@ public class AddressService {
                 .findById(id)
                 .orElseThrow(
                         () -> new AddressNotFoundException(id + " ye sahip adres bulunamadı")));
+    }
+
+    public List<UserAddressDto> getAddressesByUser(String userId) {
+        return addressRepository
+                .findAll()
+                .stream()
+                .filter(
+                        a -> Objects.equals(a.getUser().getId(), userId))
+                .map(converter::convertUserAddressDto)
+                .collect(Collectors.toList());
     }
 }
