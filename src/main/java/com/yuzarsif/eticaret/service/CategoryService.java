@@ -31,4 +31,8 @@ public class CategoryService {
                 .orElseThrow(
                         () -> new CategoryNotFoundException(id + " ye sahip bir kategori bulunamadı"));
     }
+
+    public List<CategoryDto> getById(int id) {
+        return getAll().stream().filter(c -> c.getId() == id).collect(Collectors.toList());
+    }
 }

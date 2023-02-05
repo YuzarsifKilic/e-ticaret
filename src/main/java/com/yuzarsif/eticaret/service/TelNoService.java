@@ -9,6 +9,9 @@ import com.yuzarsif.eticaret.model.TelNo;
 import com.yuzarsif.eticaret.repository.TelNoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TelNoService {
 
@@ -26,6 +29,14 @@ public class TelNoService {
         Customer customer = customerService.findById(request.getUserId());
         TelNo telNo = new TelNo(request.getTelNoType(), request.getTelNo(), customer);
         return telNoRepository.save(telNo);
+    }
+
+    public List<TelNoDto> getAll() {
+        return telNoRepository
+                .findAll()
+                .stream()
+                .map(converter::convert)
+                .collect(Collectors.toList());
     }
 
     public TelNoDto findById(int id) {

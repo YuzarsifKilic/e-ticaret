@@ -30,8 +30,12 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer findById(String id) {
+    protected Customer findById(String id) {
         return customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id + " ye sahip bic customer bulunamadı"));
+    }
+
+    public CustomerDto getById(String id) {
+        return converter.convert(findById(id));
     }
 
     public List<CustomerDto> getAllCustomer() {
