@@ -2,6 +2,7 @@ package com.yuzarsif.eticaret.controller;
 
 import com.yuzarsif.eticaret.dto.model.CategoryDto;
 import com.yuzarsif.eticaret.service.CategoryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class CategoryController {
     }
 
     @GetMapping("/getall")
-    public List<CategoryDto> getAll() {
-        return categoryService.getAll();
+    public ResponseEntity<List<CategoryDto>> getAll() {
+        return ResponseEntity.ok(categoryService.getAll());
     }
 }

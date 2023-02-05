@@ -3,6 +3,7 @@ package com.yuzarsif.eticaret.controller;
 import com.yuzarsif.eticaret.dto.model.ProductDto;
 import com.yuzarsif.eticaret.dto.request.CreateProductRequest;
 import com.yuzarsif.eticaret.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,17 +19,17 @@ public class ProductController {
     }
 
     @GetMapping("/getall")
-    public List<ProductDto> getAll() {
-        return productService.getAll();
+    public ResponseEntity<List<ProductDto>> getAll() {
+        return ResponseEntity.ok(productService.getAll());
     }
 
     @PostMapping("/save")
-    public ProductDto save(@RequestBody CreateProductRequest request) {
-        return productService.createProduct(request);
+    public ResponseEntity<ProductDto> save(@RequestBody CreateProductRequest request) {
+        return ResponseEntity.ok(productService.createProduct(request));
     }
 
     @GetMapping("/{id}")
-    public ProductDto getProductById(@PathVariable Long id) {
-        return productService.getById(id);
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getById(id));
     }
 }

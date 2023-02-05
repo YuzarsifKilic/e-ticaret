@@ -4,6 +4,7 @@ import com.yuzarsif.eticaret.dto.model.CustomerDto;
 import com.yuzarsif.eticaret.dto.request.CreateCustomerRequest;
 import com.yuzarsif.eticaret.model.Customer;
 import com.yuzarsif.eticaret.service.CustomerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,13 +20,13 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public Customer save(@RequestBody CreateCustomerRequest request) {
-        return customerService.createCustomer(request);
+    public ResponseEntity<Customer> save(@RequestBody CreateCustomerRequest request) {
+        return ResponseEntity.ok(customerService.createCustomer(request));
     }
 
     @GetMapping("getall")
-    public List<CustomerDto> getAll() {
-        return customerService.getAllCustomer();
+    public ResponseEntity<List<CustomerDto>> getAll() {
+        return ResponseEntity.ok(customerService.getAllCustomer());
     }
 
 }

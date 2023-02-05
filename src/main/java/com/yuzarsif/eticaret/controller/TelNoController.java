@@ -3,6 +3,7 @@ package com.yuzarsif.eticaret.controller;
 import com.yuzarsif.eticaret.dto.request.CreateTelNoRequest;
 import com.yuzarsif.eticaret.model.TelNo;
 import com.yuzarsif.eticaret.service.TelNoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class TelNoController {
     }
 
     @PostMapping("/save")
-    public TelNo save(@RequestBody CreateTelNoRequest request) {
-        return telNoService.createTelNo(request);
+    public ResponseEntity<TelNo> save(@RequestBody CreateTelNoRequest request) {
+        return ResponseEntity.ok(telNoService.createTelNo(request));
     }
 }
